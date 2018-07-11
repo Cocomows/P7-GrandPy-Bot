@@ -1,0 +1,42 @@
+{% extends 'layouts/default.html' %}
+<!--Active page is set for the menu-->
+{% set active_page = "home" %}
+
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Welcome to GrandPy Bot !</h1>
+        <p>Coming soon.</p>
+
+
+     </div>
+</div>
+
+<form class="well form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+<legend class="col-md-offset-2 col-md-8">GrandPy Bot</legend>
+    <div class="row">
+        <div class="col-lg-offset-2 col-lg-8">
+            <article class="chat-block">
+                <p>Ici le texte de l'historique du chat s'affiche</p>
+         <p>Différentes phrases sur différentes lignes</p>
+            </article>
+        </div>
+    </div>
+<!-- Appended Input-->
+<div class="form-group">
+  <div class="col-md-offset-2 col-md-8">
+    <div class="input-group">
+      <input id="message" name="message" class="form-control" placeholder="Entrez votre message" type="text">
+      <span class="input-group-btn"><button class="btn btn-primary" type="button">Envoyer</button></span>
+    </div>
+
+  </div>
+</div>
+</fieldset>
+</form>
+
+
+{% endblock %}

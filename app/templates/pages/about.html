@@ -1,0 +1,16 @@
+{% extends 'layouts/default.html' %}
+<!--Active page is set for the menu-->
+{% set active_page = "about" %}
+{% block title %}About {{ super()}}{% endblock %}
+{% block body %}
+<div class="row">
+    <div class="col-md-12">
+    <h1>A propos</h1>
+	<p>GrandPy Bot est un projet effectué dans le cadre de la formation OpenClassrooms Développeur d'applications
+       Python.</p>
+    <p>Le but du projet est de créer un bot qui peut analyser les phrases qui lui sont écrites et aller requêter
+        différentes informations sur Google Maps ainsi que Wikipedia.</p>
+
+    </div>
+</div>
+{% endblock %}
