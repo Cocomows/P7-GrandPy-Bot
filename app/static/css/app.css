@@ -2,11 +2,6 @@ body {
   padding-top: 100px;
 }
 
-.chat-block{
-
-    max-height: 400px;
-    overflow-y: scroll;
-}
 /*[class*="col-"] {*/
   /*border: 1px solid black;*/
   /*border-radius: 15px;*/
