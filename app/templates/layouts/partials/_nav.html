@@ -1,15 +1,15 @@
+<!--The menu is handled with a list of the pages-->
 {% set navigation_bar = [
     (url_for('home'), 'home', 'Home'),
     (url_for('about'), 'about', 'About')
 ] -%}
 
 {% set active_page = active_page|default('home') -%}
-<!--Menu is handled with a list of the pages-->
 
 <div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
-            <ul class="nav navbar-nav" id="navigation">
+            <ul class="nav navbar-nav nav-pills" id="navigation">
             {% for href, id, caption in navigation_bar %}
                 <!--Active page is checked for bootstrap styling-->
                 <li{% if id == active_page %} class="active"{% endif

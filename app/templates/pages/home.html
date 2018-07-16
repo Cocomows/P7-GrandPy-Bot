@@ -3,40 +3,30 @@
 {% set active_page = "home" %}
 
 {% block body %}
-<div class="row">
-    <div class="col-md-12">
-        <h1>Welcome to GrandPy Bot !</h1>
-        <p>Coming soon.</p>
-
-
-     </div>
-</div>
-
-<form class="well form-horizontal">
-<fieldset>
-
-<!-- Form Name -->
-<legend class="col-md-offset-2 col-md-8">GrandPy Bot</legend>
-    <div class="row">
-        <div class="col-lg-offset-2 col-lg-8">
-            <article >
-                <p>Ici le texte de l'historique du chat s'affiche</p>
-         <p>Différentes phrases sur différentes lignes</p>
-            </article>
+<div class="container">
+    <h1>Welcome to GrandPy Bot !</h1>
+    <!-- Chatbox-->
+    <div class="">
+        <div class="row">
+            <div id="chatbox" class="col-lg-offset-2 col-lg-8">
+                <div class='message bot'>Bonjour ! De quoi allons nous parler ?</div>
+            </div>
         </div>
-    </div>
-<!-- Appended Input-->
-<div class="form-group">
-  <div class="col-md-offset-2 col-md-8">
-    <div class="input-group">
-      <input id="message" name="message" class="form-control" placeholder="Entrez votre message" type="text">
-      <span class="input-group-btn"><button class="btn btn-primary" type="button">Envoyer</button></span>
+        <!-- User input-->
+        <form id="chatform" class="form-horizontal" autocomplete="off">
+            <fieldset>
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8">
+                    <div class="input-group">
+                      <input id="user_message" name="user_message" class="form-control" placeholder="Entrez votre message" type="text">
+                      <span class="input-group-btn"><button id="submit" class="btn btn-primary" type="submit">Envoyer</button></span>
+                    </div>
+                  </div>
+                </div>
+            </fieldset>
+        </form>
     </div>
 
-  </div>
 </div>
-</fieldset>
-</form>
-
-
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
 {% endblock %}
