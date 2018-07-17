@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-
+from grandpy import parseText
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,7 +10,8 @@ def home():
 def response():
     message = request.form['user_message']
     print(message)
-    reply = "Réponse au message '"+message+"'"
+    print(parseText(message))
+    reply = "Mots retenus dans le message : '"+parseText(message)+"'"
     return jsonify(reply=reply, consolemsg="ok")
 
 @app.route('/about')

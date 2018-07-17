@@ -3,22 +3,37 @@
 {% set active_page = "home" %}
 
 {% block body %}
-<div class="container">
-    <h1>Welcome to GrandPy Bot !</h1>
+<div class="container-fluid">
     <!-- Chatbox-->
-    <div class="">
+    <div id="chatbox" class="chatbox">
         <div class="row">
-            <div id="chatbox" class="col-lg-offset-2 col-lg-8">
-                <div class='message bot'>Bonjour ! De quoi allons nous parler ?</div>
+            <div id="chatmsg" class="col-lg-offset-3 col-lg-6">
+                <div class="row">
+                    <div class='message bot'>Bonjour ! De quoi allons nous parler ?</div>
+                </div>
+                <div class="row">
+                    <div class='message bot map'>Voici une carte : <div id="map"></div></div>
+               </div>
+                <script>
+                  var map;
+                  function initMap() {
+                    map = new google.maps.Map(document.getElementById('map'), {
+                      center: {lat: -34.397, lng: 150.644},
+                      zoom: 7
+                    });
+                  }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPmjkI_GNS2gr0abHxI_OlwrzTpho_yVg&callback=initMap"
+                async defer></script>
             </div>
         </div>
         <!-- User input-->
         <form id="chatform" class="form-horizontal" autocomplete="off">
             <fieldset>
                 <div class="form-group">
-                  <div class="col-md-offset-2 col-md-8">
+                  <div class="col-md-offset-3 col-md-6">
                     <div class="input-group">
-                      <input id="user_message" name="user_message" class="form-control" placeholder="Entrez votre message" type="text">
+                      <input id="user_message" name="user_message" required="required" class="form-control" placeholder="Entrez votre message" type="text">
                       <span class="input-group-btn"><button id="submit" class="btn btn-primary" type="submit">Envoyer</button></span>
                     </div>
                   </div>
