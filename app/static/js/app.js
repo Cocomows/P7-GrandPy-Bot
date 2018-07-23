@@ -14,7 +14,7 @@ $('#submit').on('click', function(e) {
 
                 var input = $('#user_message').val()
                 $("#chatmsg").append( "<div class='row'><div class='message'>"+input+"</div></div>" );
-                $("#chatmsg").append( "<div class='row'><div class='message bot'>"+response['reply']+"</div></div>" );
+                $("#chatmsg").append( "<div class='row'><div class='message bot'>"+response['wiki_reply']+"</div></div>" );
                 $('#user_message').val("");
                 $('#user_message').focus();
                 var elem = document.getElementById('chatbox');

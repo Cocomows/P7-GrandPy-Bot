@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from grandpy import parseText
+from grandpy import BotResponse,get_wiki_info
 app = Flask(__name__)
 
 @app.route('/')
@@ -8,11 +8,18 @@ def home():
 
 @app.route('/_response', methods=['POST'])
 def response():
-    message = request.form['user_message']
-    print(message)
-    print(parseText(message))
-    reply = "Mots retenus dans le message : '"+parseText(message)+"'"
-    return jsonify(reply=reply, consolemsg="ok")
+    bot_response = BotResponse(request.form['user_message'])
+
+    #
+    # message = request.form['user_message']
+    # print(message)
+    # parsed_Text = parse_text(message)
+
+    # reply = "Mots retenus dans le message : '"+parsed_Text+"'"
+    wiki_reply = get_wiki_info(bot_response.user_message_parsed)
+    gmaps_reply_lng = ""
+    gmaps_reply_lat = ""
+    return jsonify(wiki_reply=wiki_reply, gmaps_reply_lat=gmaps_reply_lat, gmaps_reply_lng=gmaps_reply_lng, consolemsg="ok")
 
 @app.route('/about')
 def about():
