@@ -42,6 +42,9 @@ body {
     background-color: #ddd;
     text-align: left;
 }
+.map {
+    height: 300px;
+}
 
 #map {
     height: 300px;

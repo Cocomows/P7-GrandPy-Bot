@@ -11,12 +11,15 @@
     <script type=text/javascript>
       $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac&callback=initMap" async defer></script>
+
+
 
 </head>
 <body>
     {% include 'layouts/partials/_nav.html'%}
     {% block body %}{% endblock %}
+
+{#    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac" defer></script>#}
 </body>
 {% include 'layouts/partials/_footer.html'%}
 
