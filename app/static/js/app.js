@@ -6,12 +6,48 @@ document.getElementById('user_message').focus();
 var nb_responses = 0;
 
 $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac", function() {
-    var map;
-    function initializeMap(lat, lng, id){
-        map = new google.maps.Map(id, {
-          center: {lat: lat, lng: lng},
-          zoom: 13
+
+    function initializeMap(name, json, id){
+
+
+        var myLatLng = json.candidates[0].geometry.location;
+        console.log("coordonnées point :"+myLatLng);
+
+        var map = new google.maps.Map(id, {
+            zoom: 15,
+            center: myLatLng
         });
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: name,
+            animation: google.maps.Animation.DROP,
+        });
+        function toggleBounce() {
+          if (marker.getAnimation() !== null) {
+            marker.setAnimation(null);
+          } else {
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+        }
+
+        marker.setMap(map);
+        toggleBounce();
+
+        var ne_lat = json.candidates[0].geometry.viewport.northeast.lat;
+        var ne_lng = json.candidates[0].geometry.viewport.northeast.lng;
+        var sw_lat = json.candidates[0].geometry.viewport.southwest.lat;
+        var sw_lng = json.candidates[0].geometry.viewport.southwest.lng;
+
+        var ne_bound = new google.maps.LatLng(ne_lat, ne_lng);
+        var sw_bound = new google.maps.LatLng(sw_lat,sw_lng);
+        var bounds = new google.maps.LatLngBounds();
+        bounds.extend(ne_bound);
+        bounds.extend(sw_bound);
+        map.fitBounds(bounds);
+
+
     }
     // initializeMap(48.856614, 2.3522219, document.getElementById('map0'));
 
@@ -33,11 +69,21 @@ $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpAD
                     chat_msg.append( "<div class='row'><div class='message'>"+input+"</div></div>" );
                     chat_msg.append( "<div class='row'><div class='message bot'>"+response['wiki_reply']+"</div></div>" );
                     // chat_msg.append( "<div class='row'><div class='message bot'> Latitude : "+response['gmaps_reply_lat']+" Longitude : "+response['gmaps_reply_lng']+"</div></div>" );
-                    chat_msg.append( "<div class='row'><div class='message bot'>Voici une carte : <div class='map' id='"+id_map+"'></div></div></div>");
+                    if (response['gmaps_reply'] !== "No result"){
+                        chat_msg.append( "<div class='row'><div class='message bot'>" +
+                            "Voici une carte de "+response['gmaps_name']+" à l'adresse : "+response['gmaps_address']+
+                            "<div class='map' id='"+id_map+"'></div></div></div>");
+                        }
+                    else{
+                        chat_msg.append( "<div class='row'><div class='message bot'>Je n'ai pas trouvé de carte à ce sujet.</div></div>");
+
+                    }
                     var elem = document.getElementById('chatbox');
                     elem.scrollTop = elem.scrollHeight;
 
-                    initializeMap(response['gmaps_reply_lat'], response['gmaps_reply_lng'], document.getElementById(id_map));
+                    initializeMap(response['gmaps_name'],
+                                  response['gmaps_json'],
+                                  document.getElementById(id_map));
 
                 },
                 error: function(error) {
