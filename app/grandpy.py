@@ -6,7 +6,6 @@ Stopword list used from https://github.com/stopwords-iso/stopwords-fr/blob/maste
 """
 import json
 import os
-import string
 import requests
 import re
 
@@ -18,7 +17,7 @@ class BotResponse:
         self.user_message_parsed = self.parse_text()
         self.name = "No result"
         self.address = "No result"
-        self.wiki_response_html = "No result"
+        self.wiki_response_html = "Je n'ai pas compris la demande ou je ne connais pas d'histoire à ce sujet."
         self.gmaps_response = "No result"
         self.gmaps_json = ''
 
@@ -80,7 +79,8 @@ class BotResponse:
             wiki_article_intro = json_wiki['query']['pages'][article_id]['extract']
             title = json_wiki['query']['pages'][article_id]['title']
             wiki_link = 'http://fr.wikipedia.org/wiki/' + title
-            wiki_article_intro = wiki_article_intro+ ' <a href="' + wiki_link + '" target="_blank">En savoir plus sur wikipédia.</a>'
+            wiki_article_intro = wiki_article_intro+ ' <a href="' + \
+                                 wiki_link + '" target="_blank">En savoir plus sur wikipédia.</a>'
 
         except KeyError:
             wiki_article_intro = "Je n'ai pas compris la demande ou je ne connais pas d'histoire à ce sujet."

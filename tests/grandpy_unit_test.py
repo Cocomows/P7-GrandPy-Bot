@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from app.grandpy import BotResponse
 
 
@@ -29,14 +31,12 @@ def test_get_gmap_info_error():
     assert bot_response.gmaps_response == "No result"
 
 
-
 def test_get_gmap_info():
     # testing wiki response with random string to generate error
     bot_response = BotResponse("Paris")
     assert bot_response.gmaps_response == "OK"
     assert bot_response.gmaps_json['candidates'][0]['geometry']['location']['lat'] == 48.856614
     assert bot_response.gmaps_json['candidates'][0]['geometry']['location']['lng'] == 2.3522219
-
 
 
 def test_botresponse():
