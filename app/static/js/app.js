@@ -7,7 +7,6 @@ var nb_responses = 0;
 var id_msg = "msg"+nb_responses;
 var id_map = "map"+nb_responses;
 
-
 wait.hide();
 user_message.focus();
 
@@ -39,9 +38,6 @@ $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpAD
             }
         }
 
-        marker.setMap(map);
-        toggleBounce();
-
         var ne_lat = json.candidates[0].geometry.viewport.northeast.lat;
         var ne_lng = json.candidates[0].geometry.viewport.northeast.lng;
         var sw_lat = json.candidates[0].geometry.viewport.southwest.lat;
@@ -55,6 +51,11 @@ $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpAD
         bounds.extend(sw_bound);
 
         map.fitBounds(bounds);
+
+        setTimeout(function(){
+            marker.setMap(map);
+            toggleBounce(); }, 3000);
+
     }
 
 
@@ -118,7 +119,6 @@ $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpAD
                 complete: function () {
                     //scroll to the bottom to see input form
                     chatbox.animate({scrollTop: chatbox[0].scrollHeight}, 1000);
-
 
                 }
             });

@@ -18,8 +18,6 @@ def response():
     gmaps_address = bot_response.address
     gmaps_name = bot_response.name
     gmaps_json = bot_response.gmaps_json
-    # print(wiki_reply)
-    # print(gmap_reply)
 
     return jsonify(wiki_reply=wiki_reply, gmaps_reply=gmap_reply, gmaps_address=gmaps_address,
                    gmaps_name=gmaps_name, gmaps_json=gmaps_json)

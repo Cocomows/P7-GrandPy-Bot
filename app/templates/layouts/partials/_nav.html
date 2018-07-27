@@ -1,22 +1,22 @@
 <!--The menu is handled with a list of the pages-->
 {% set navigation_bar = [
-    (url_for('home'), 'home', 'Home'),
-    (url_for('about'), 'about', 'About')
+    (url_for('home'), 'home', '<i class="fas fa-glasses"></i> GrandPy Bot'),
+    (url_for('about'), 'about', 'A propos')
 ] -%}
 
 {% set active_page = active_page|default('home') -%}
 
 <div>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top nav-pills">
         <div class="container-fluid">
-            <ul class="nav navbar-nav nav-pills" id="navigation">
-            {% for href, id, caption in navigation_bar %}
-                <!--Active page is checked for bootstrap styling-->
-                <li{% if id == active_page %} class="active"{% endif
-                %}><a href="{{ href|e }}">{{ caption|e }}</a>
-                </li>
-            {% endfor %}
-            </ul>
+                <ul class="nav navbar-nav nav-pills" id="navigation">
+                {% for href, id, caption in navigation_bar %}
+                    <!--Active page is checked for bootstrap styling-->
+                    <li{% if id == active_page %} class="active"{% endif
+                    %}><a href="{{ href|e }}">{{ caption|safe }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
         </div>
     </nav>
 </div>
