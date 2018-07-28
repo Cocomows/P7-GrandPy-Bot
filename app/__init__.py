@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from .grandpy import BotResponse
+from app.grandpy import BotResponse
 app = Flask(__name__)
 
 

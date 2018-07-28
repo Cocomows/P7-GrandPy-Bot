@@ -97,7 +97,9 @@ class BotResponse:
         payload = {'key': 'AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac',
                    'inputtype': 'textquery',
                    'locationbias': 'ipbias',
+                   'language': 'fr',
                    'input': search_term,
+                   'type': 'street_address',
                    'fields': 'formatted_address,geometry,name,place_id',
                    }
 
