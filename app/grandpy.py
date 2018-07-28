@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 Module used for GrandPy Bot
 Stopword list used from https://github.com/stopwords-iso/stopwords-fr/blob/master/stopwords-fr.json
@@ -25,8 +26,6 @@ class BotResponse:
         if self.user_message_parsed != "":
             self.wiki_response_html = self.get_wiki_info()
             self.gmaps_response = self.get_gmaps_info()
-
-
 
     def parse_text(self):
         """Parses the attribute self.user_message. Sets chars to lowerkey, strips punctuation and removes words that are in stopwords.json
@@ -78,8 +77,7 @@ class BotResponse:
         try:
             article_id = self.wiki_json ['query']['pageids'][0]
             wiki_article_intro = self.wiki_json ['query']['pages'][article_id]['extract']
-            title = self.wiki_json ['query']['pages'][article_id]['title']
-            wiki_link = 'http://fr.wikipedia.org/wiki/' + title
+            wiki_link = 'http://fr.wikipedia.org/?curid='+article_id
             wiki_article_intro = wiki_article_intro+ ' <a href="' + \
                                  wiki_link + '" target="_blank">En savoir plus sur wikipédia.</a>'
 

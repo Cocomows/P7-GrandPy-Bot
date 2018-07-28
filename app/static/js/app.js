@@ -119,7 +119,6 @@ $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpAD
                 complete: function () {
                     //scroll to the bottom to see input form
                     chatbox.animate({scrollTop: chatbox[0].scrollHeight}, 1000);
-
                 }
             });
         }

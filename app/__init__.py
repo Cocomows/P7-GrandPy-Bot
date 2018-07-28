@@ -28,11 +28,6 @@ def about():
     return render_template("pages/about.html")
 
 
-@app.route('/maps')
-def maps():
-    return render_template("pages/maps_api_test.html")
-
-
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template("errors/404.html"), 404
