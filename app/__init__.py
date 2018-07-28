@@ -11,7 +11,8 @@ def home():
 @app.route('/_response', methods=['POST'])
 def response():
     bot_response = BotResponse(request.form['user_message'])
-    print(bot_response.user_message_parsed)
+
+    print(bot_response.user_message)
     wiki_reply = bot_response.wiki_response_html
     gmap_reply = bot_response.gmaps_response
 
