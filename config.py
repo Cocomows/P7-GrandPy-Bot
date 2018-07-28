@@ -1,7 +1,8 @@
 import os
 
-if os.environ.get('IS_HEROKU', None) :
-    GMAPS_API_KEY = os.environ.get('GMAPS_API_KEY')
+if os.environ.get('GMAPS_API_KEY') is None:
+    with open(os.path.join(os.path.dirname(__file__),"api_key_local"), "r") as api_key_local:
+        GMAPS_API_KEY = api_key_local.read()
+
 else:
-    from api_key_local import GMAPS_KEY
-    GMAPS_API_KEY = GMAPS_KEY
+    GMAPS_API_KEY = os.environ.get('GMAPS_API_KEY')
