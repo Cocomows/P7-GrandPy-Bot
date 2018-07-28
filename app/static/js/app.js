@@ -9,11 +9,10 @@ var id_map = "map"+nb_responses;
 
 wait.hide();
 user_message.focus();
+var maps_api_url = "https://maps.googleapis.com/maps/api/js?key="+$GMAPS_KEY;
 
-
-$.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac", function() {
+$.getScript(maps_api_url, function() {
 //using getscript to ensure gmaps api is loaded
-
     function initializeMap(name, json, id) {
 
         var myLatLng = json.candidates[0].geometry.location;

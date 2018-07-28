@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request, jsonify
-from app.grandpy import BotResponse
+from app.grandpy import BotResponse, GMAPS_API_KEY
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def home():
-    return render_template("pages/home.html")
+    return render_template("pages/home.html", gmapskey=GMAPS_API_KEY)
 
 
 @app.route('/_response', methods=['POST'])

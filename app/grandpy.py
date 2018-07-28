@@ -9,6 +9,7 @@ import json
 import os
 import requests
 import re
+from config import GMAPS_API_KEY
 
 
 class BotResponse:
@@ -94,7 +95,8 @@ class BotResponse:
 
         search_term = self.user_message_parsed
         api_url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json"
-        payload = {'key': 'AIzaSyAqlMjGomKCRX2zpADXcv11liLI9H2f1ac',
+
+        payload = {'key': GMAPS_API_KEY,
                    'inputtype': 'textquery',
                    'locationbias': 'ipbias',
                    'language': 'fr',
@@ -113,3 +115,5 @@ class BotResponse:
             return "OK"
         else:
             return "No result"
+
+
