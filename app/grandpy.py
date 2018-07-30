@@ -98,7 +98,7 @@ class BotResponse:
 
         payload = {'key': GMAPS_API_KEY,
                    'inputtype': 'textquery',
-                   'locationbias': 'ipbias',
+                   'locationbias': 'point:48.856614,2.3522219',
                    'language': 'fr',
                    'input': search_term,
                    'type': 'street_address',
