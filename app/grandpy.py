@@ -15,6 +15,7 @@ from config import GMAPS_API_KEY
 class BotResponse:
 
     def __init__(self, user_message):
+        # Adding space after message for parsing.
         self.user_message = user_message+" "
         self.user_message_parsed = self.parse_text()
         self.name = "No result"
