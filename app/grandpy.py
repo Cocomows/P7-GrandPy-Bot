@@ -77,13 +77,13 @@ class BotResponse:
 
         try:
             article_id = self.wiki_json ['query']['pageids'][0]
-            wiki_article_intro = self.wiki_json ['query']['pages'][article_id]['extract']
+            wiki_article_intro = self.wiki_json['query']['pages'][article_id]['extract']
             wiki_link = 'http://fr.wikipedia.org/?curid='+article_id
-            wiki_article_intro = wiki_article_intro+ ' <a href="' + \
+            wiki_article_intro = wiki_article_intro + ' <a href="' + \
                                  wiki_link + '" target="_blank">En savoir plus sur wikipédia.</a>'
 
         except KeyError:
-            wiki_article_intro = "Je n'ai pas compris la demande ou je ne connais pas d'histoire à ce sujet."
+            wiki_article_intro = self.wiki_response_html
 
         return wiki_article_intro
 
