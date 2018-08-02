@@ -16,7 +16,7 @@ def response():
     print(bot_response.user_message)
     wiki_reply = bot_response.wiki_response_html
     gmap_reply = bot_response.gmaps_response
-
+    print(bot_response.user_message_parsed)
     gmaps_address = bot_response.address
     gmaps_name = bot_response.name
     gmaps_json = bot_response.gmaps_json

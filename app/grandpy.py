@@ -15,8 +15,8 @@ from config import GMAPS_API_KEY
 class BotResponse:
 
     def __init__(self, user_message):
-        # Adding space after message for parsing.
-        self.user_message = user_message+" "
+        # Adding space before and after message for parsing.
+        self.user_message = user_message
         self.user_message_parsed = self.parse_text()
         self.name = "No result"
         self.address = "No result"
@@ -44,13 +44,16 @@ class BotResponse:
 
         # Remove all punctuation and make text lowercase with a regex
 
-        parsed_text = re.sub(r"[-,.;@#?!&$']+ *", " ", self.user_message.lower(), )
+        string_no_punctuation = re.sub(r"[-,.;@#?!&$']+ *", " ", self.user_message.lower(), )
 
-        # Remove stopwords and extra space
-        for word in parsed_text.split():
-            if word in stopwords:
-                parsed_text = parsed_text.replace(word+" ", "", 1)
-            parsed_text = " ".join(parsed_text.split())
+        words_to_parse = string_no_punctuation.split()
+        resultwords = []
+
+        for word in words_to_parse:
+            if word not in stopwords:
+                resultwords.append(word)
+        parsed_text = ' '.join(resultwords)
+
         return parsed_text
 
     def get_wiki_info(self):

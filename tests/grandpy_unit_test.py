@@ -40,6 +40,10 @@ def test_parse_text_apostrophe():
     bot_response = BotResponse("Gare d'austerlitz")
     assert bot_response.user_message_parsed == "gare austerlitz"
 
+def test_parse_repetition():
+    bot_response = BotResponse("Parle moi de la grande muraille de chine")
+    assert bot_response.user_message_parsed == "grande muraille chine"
+
 
 def test_get_wiki_info():
     bot_response = BotResponse("Paris")
