@@ -113,8 +113,6 @@ class BotResponse:
         data = json.loads(resp.text)
 
         self.gmaps_json = data
-        print(resp.url)
-        print(self.gmaps_json)
 
         if data['status'] != 'ZERO_RESULTS':
             try:
