@@ -113,11 +113,18 @@ class BotResponse:
         data = json.loads(resp.text)
 
         self.gmaps_json = data
+        print(resp.url)
+        print(self.gmaps_json)
+
         if data['status'] != 'ZERO_RESULTS':
-            self.name = data['candidates'][0]['name']
-            self.address = data['candidates'][0]['formatted_address']
+            try:
+                self.name = data['candidates'][0]['name']
+                self.address = data['candidates'][0]['formatted_address']
+            except IndexError:
+                return "No result"
             return "OK"
         else:
             return "No result"
+
 
 
