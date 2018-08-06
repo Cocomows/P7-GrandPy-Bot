@@ -30,7 +30,8 @@ class BotResponse:
             self.gmaps_response = self.get_gmaps_info()
 
     def parse_text(self):
-        """Parses the attribute self.user_message. Sets chars to lowerkey, strips punctuation and removes words that are in stopwords.json
+        """Parses the attribute self.user_message. Sets chars to lowerkey, strips punctuation and removes words
+        that are in stopwords.json. Returns user_message_parsed
 
         :rtype: string
         """
@@ -41,18 +42,17 @@ class BotResponse:
             print('Error loading stopword file : ' + str(err))
             stopwords = "error"
 
-
         # Remove all punctuation and make text lowercase with a regex
 
         string_no_punctuation = re.sub(r"[-,.;@#?!&$']+ *", " ", self.user_message.lower(), )
 
         words_to_parse = string_no_punctuation.split()
-        resultwords = []
+        result_words = []
 
         for word in words_to_parse:
             if word not in stopwords:
-                resultwords.append(word)
-        parsed_text = ' '.join(resultwords)
+                result_words.append(word)
+        parsed_text = ' '.join(result_words)
 
         return parsed_text
 
@@ -92,7 +92,8 @@ class BotResponse:
         return wiki_article_intro
 
     def get_gmaps_info(self):
-        """Gets the information from gmaps about the parsed text, sets googlemaps_response and lng,lat if ok.
+        """Gets the information from gmaps about the parsed text, returns googlemaps_response and
+        sets gmaps_json, name, and address if ok.
 
         :rtype: string
         """

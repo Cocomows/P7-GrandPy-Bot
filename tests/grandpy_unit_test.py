@@ -14,8 +14,23 @@ class MockRequestsResponse:
 
 def test_requests_response(monkeypatch):
 
-    results_wiki = '{"batchcomplete":"","continue":{"gsroffset":1,"continue":"gsroffset||"},"query":{"pageids":["681159"],"pages":{"681159":{"pageid":681159,"ns":0,"title":"Paris","index":1,"extract":"Paris (prononc\u00e9 [pa.\u0281i] ) est la capitale de la France. Elle se situe au c\u0153ur d\'un vaste bassin s\u00e9dimentaire aux sols fertiles et au climat temp\u00e9r\u00e9, le bassin parisien, sur une boucle de la Seine, entre les confluents de celle-ci avec la Marne et l\'Oise. Ses habitants s\u2019appellent les Parisiens. Paris est \u00e9galement le chef-lieu de la r\u00e9gion \u00cele-de-France et l\'unique commune fran\u00e7aise qui est en m\u00eame temps un d\u00e9partement. Commune centrale de la m\u00e9tropole du Grand Paris, cr\u00e9\u00e9e en 2016, elle est divis\u00e9e en arrondissements, comme les villes de Lyon et de Marseille, au nombre de vingt."}}}}'
-    results_gmaps = '{"candidates": [ { "formatted_address": "Paris, France", "geometry": { "location": {  "lat": 48.856614,  "lng": 2.3522219 }, "viewport": {  "northeast": {  "lat": 48.9021449,  "lng": 2.4699208  },  "southwest": {  "lat": 48.815573,  "lng": 2.224199  } } }, "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", "name": "Paris", "place_id": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ" } ], "debug_log": { "line": [] }, "status": "OK"}'
+    results_wiki = '{"batchcomplete":"","continue":{"gsroffset":1,"continue":"gsroffset||"},' \
+                   '"query":{"pageids":["681159"],"pages":{"681159":{"pageid":681159,"ns":0,"title":"Paris",' \
+                   '"index":1,"extract":"Paris (prononc\u00e9 [pa.\u0281i] ) est la capitale de la France. ' \
+                   'Elle se situe au c\u0153ur d\'un vaste bassin s\u00e9dimentaire aux sols fertiles et au ' \
+                   'climat temp\u00e9r\u00e9, le bassin parisien, sur une boucle de la Seine, entre les confluents ' \
+                   'de celle-ci avec la Marne et l\'Oise. Ses habitants s\u2019appellent les Parisiens. Paris' \
+                   ' est \u00e9galement le chef-lieu de la r\u00e9gion \u00cele-de-France et l\'unique commune' \
+                   ' fran\u00e7aise qui est en m\u00eame temps un d\u00e9partement. Commune centrale de la ' \
+                   'm\u00e9tropole du Grand Paris, cr\u00e9\u00e9e en 2016, elle est divis\u00e9e en ' \
+                   'arrondissements, comme les villes de Lyon et de Marseille, au nombre de vingt."}}}}'
+    results_gmaps = '{"candidates": [ { "formatted_address": "Paris, France", "geometry":' \
+                    ' { "location": {  "lat": 48.856614,  "lng": 2.3522219 }, "viewport": {  ' \
+                    '"northeast": {  "lat": 48.9021449,  "lng": 2.4699208  },  "southwest": {  ' \
+                    '"lat": 48.815573,  "lng": 2.224199  } } }, ' \
+                    '"icon": "https://maps.gstatic.com/mapfiles/place_api/icons/generic_business-71.png", ' \
+                    '"name": "Paris", "place_id": "ChIJD7fiBh9u5kcRYJSMaMOCCwQ" } ], ' \
+                    '"debug_log": { "line": [] }, "status": "OK"}'
 
     def mockreturn(api_url, params):
         response = ""
@@ -49,13 +64,15 @@ def test_parse_repetition():
 
 def test_get_wiki_info():
     bot_response = BotResponse("Paris")
-    assert bot_response.wiki_response_html[:90] == "Paris (prononcé [pa.ʁi] ) est la capitale de la France. Elle se situe au cœur d'un vaste b"
+    assert bot_response.wiki_response_html[:90] == "Paris (prononcé [pa.ʁi] ) est la capitale de la France. " \
+                                                   "Elle se situe au cœur d'un vaste b"
 
 
 def test_get_wiki_info_error():
     # testing wiki response with random string to generate error
     bot_response = BotResponse("dsmjhfqùjhqfm")
-    assert bot_response.wiki_response_html == "Je n'ai pas compris la demande ou je ne connais pas d'histoire à ce sujet."
+    assert bot_response.wiki_response_html == "Je n'ai pas compris la demande ou je ne connais pas " \
+                                              "d'histoire à ce sujet."
 
 
 def test_get_gmap_info_error():
