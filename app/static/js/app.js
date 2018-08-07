@@ -71,7 +71,7 @@ $.getScript(maps_api_url, function() {
                 success: function (response, status) {
 
                     // Ajax call successful : handle the response.
-                    var input = user_message.val();
+                    var input = $("<div>").text(user_message.val()).html();
                     user_message.val("");
                     nb_responses++;
                     id_msg = "msg" + nb_responses;
