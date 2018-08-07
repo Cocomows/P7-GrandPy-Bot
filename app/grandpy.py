@@ -44,7 +44,7 @@ class BotResponse:
 
         # Remove all punctuation and make text lowercase with a regex
 
-        string_no_punctuation = re.sub(r"[-,.;@#?!&$']+ *", " ", self.user_message.lower(), )
+        string_no_punctuation = re.sub(r"[-,.;@#?!&$'()<>/]+ *", " ", self.user_message.lower(), )
 
         words_to_parse = string_no_punctuation.split()
         result_words = []

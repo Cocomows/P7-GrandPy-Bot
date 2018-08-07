@@ -12,7 +12,7 @@ user_message.focus();
 var maps_api_url = "https://maps.googleapis.com/maps/api/js?key="+$GMAPS_KEY;
 
 $.getScript(maps_api_url, function() {
-//using getscript to ensure gmaps api is loaded
+ //using getscript to ensure gmaps api is loaded
     function initializeMap(name, json, id) {
 
         var myLatLng = json.candidates[0].geometry.location;
